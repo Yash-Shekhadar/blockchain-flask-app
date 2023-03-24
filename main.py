@@ -1,5 +1,5 @@
 from flask import Flask
-import urllib3.request
+import urllib.request
 import pandas as pd
 
 app = Flask(__name__)
@@ -11,7 +11,7 @@ urllist = ['https://drive.google.com/file/d/1fGCocjbtGwEYBYmIiKn7IgRdqD45toL7/vi
 filenames = ['encounter.csv', 'loitering.csv', 'port.csv']
 
 for i in range(len(filenames)):
-    urllib3.request.urlretrieve(urllist[i], filenames[i])
+    urllib.request.urlretrieve(urllist[i], filenames[i])
 
 df_e = pd.read_csv("./encounter.csv")
 df_l = pd.read_csv("./loitering.csv")
