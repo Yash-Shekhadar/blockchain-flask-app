@@ -4,6 +4,8 @@ import pandas as pd
 
 app = Flask(__name__)
 
+df_e, df_l, df_p = None, None, None
+
 
 @app.route('/')
 def hello():
