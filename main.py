@@ -4,8 +4,6 @@ import pandas as pd
 
 app = Flask(__name__)
 
-df_e, df_l, df_p = None, None, None
-
 print("Its me, hi, I am the problem its me!")
 urllist = ['https://drive.google.com/file/d/1fGCocjbtGwEYBYmIiKn7IgRdqD45toL7/view?usp=share_link', 'https://drive.google.com/file/d/1eyAwWBHtXGghYmZn_tKNZ53cVury1jT1/view?usp=share_link', 'https://drive.google.com/file/d/1WSrIw5tZIDbUQm30-TK09Ru2NpvzL2cZ/view?usp=share_link']
 filenames = ['encounter.csv', 'loitering.csv', 'port.csv']
