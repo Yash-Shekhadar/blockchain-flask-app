@@ -1,5 +1,5 @@
 from flask import Flask
-import urllib.request
+import urllib3.request
 import pandas as pd
 app = Flask(__name__)
 
@@ -17,9 +17,9 @@ if __name__ == '__main__':
     filenames = ['encounter.csv', 'loitering.csv', 'port.csv']
 
     for i in range(len(filenames)):
-        urllib.request.urlretrieve(urllist[i], filenames[i])
+        urllib3.request.urlretrieve(urllist[i], filenames[i])
 
     df_e = pd.read_csv("./encounter.csv")
     df_l = pd.read_csv("./loitering.csv")
     df_p = pd.read_csv("./port.csv")
-    
+
