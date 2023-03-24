@@ -11,12 +11,12 @@ df_e, df_l, df_p = None, None, None
 def hello():
     """Return a friendly HTTP greeting."""
     # return 'Hello World!'
-    return len(df_e)
+    return str(len(df_e))
 
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)
-    
+    print("Its me, hi, I am the problem its me!")
     urllist = ['https://drive.google.com/file/d/1fGCocjbtGwEYBYmIiKn7IgRdqD45toL7/view?usp=share_link', 'https://drive.google.com/file/d/1eyAwWBHtXGghYmZn_tKNZ53cVury1jT1/view?usp=share_link', 'https://drive.google.com/file/d/1WSrIw5tZIDbUQm30-TK09Ru2NpvzL2cZ/view?usp=share_link']
     filenames = ['encounter.csv', 'loitering.csv', 'port.csv']
 
@@ -26,4 +26,5 @@ if __name__ == '__main__':
     df_e = pd.read_csv("./encounter.csv")
     df_l = pd.read_csv("./loitering.csv")
     df_p = pd.read_csv("./port.csv")
+    print(len(df_e), len(df_l), len(df_p))
 
