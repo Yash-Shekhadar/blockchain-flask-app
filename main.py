@@ -11,7 +11,6 @@ df_p = pd.read_csv('./mock_data/port.csv')
 
 @app.route('/data/<mmsi>')
 def checkExistence(mmsi):
-    print(int(mmsi) in df_s.v1MMSI.values, int(mmsi), df_s.v1MMSI.values, df_s.dtypes)
     if int(mmsi) in df_s.v1MMSI:
         return {"mmsi":mmsi}
     else:
