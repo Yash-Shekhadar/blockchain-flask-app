@@ -12,7 +12,7 @@ df_p = pd.read_csv('./mock_data/port.csv')
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    return len(df_e)
+    return str(len(df_e))
 
 
 if __name__ == '__main__':
