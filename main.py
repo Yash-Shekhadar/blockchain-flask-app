@@ -9,10 +9,13 @@ df_p = pd.read_csv('./mock_data/port.csv')
 
 
 
-@app.route('/')
-def hello():
+@app.route('/data/<mmsi>')
+def checkExistence(mmsi):
     """Return a friendly HTTP greeting."""
-    return str(len(df_e))
+    if mmsi in df_s.v1MMSI:
+        return {"mmsi":mmsi}
+    else:
+        return {"mmsi":999999999}
 
 
 if __name__ == '__main__':
