@@ -11,8 +11,8 @@ df_p = pd.read_csv('./mock_data/port.csv')
 
 @app.route('/data/<mmsi>')
 def checkExistence(mmsi):
-    """Return a friendly HTTP greeting."""
-    if mmsi in df_s.loc[:,'v1MMSI'].values.tolist():
+    print(int(mmsi) in df_s.v1MMSI.values, int(mmsi), df_s.v1MMSI.values, df_s.dtypes)
+    if int(mmsi) in df_s.v1MMSI:
         return {"mmsi":mmsi}
     else:
         return {"mmsi":999999999}
