@@ -50,7 +50,7 @@ def getAllPrices():
     for node in nodeNames:
         temp = dict()
         for net in netNames:
-            res = urllib.request.urlopen(f'http://127.0.0.1:8080/getNodePrice/{node}/{net}')
+            # res = urllib.request.urlopen(f'http://127.0.0.1:8080/getNodePrice/{node}/{net}')
             res = urllib.request.urlopen(f'https://civic-genre-325102.ue.r.appspot.com/getNodePrice/{node}/{net}')
             data = json.loads(res.read().decode())
             # res = requests.get(f'http://127.0.0.1:8080/getNodePrice/{node}/{net}')      # for localhost testing
