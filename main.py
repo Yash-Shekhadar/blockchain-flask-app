@@ -48,7 +48,8 @@ def getAllPrices():
     for node in nodeNames:
         temp = dict()
         for net in netNames:
-            res = requests.get(f'http://127.0.0.1:8080/getNodePrice/{node}/{net}')
+            # res = requests.get(f'http://127.0.0.1:8080/getNodePrice/{node}/{net}')      # for localhost testing
+            res = requests.get(f'https://civic-genre-325102.ue.r.appspot.com/getNodePrice/{node}/{net}')       # for gcloud use
             data = res.json()
             temp[net] = data['price']
         result[node] = temp
@@ -58,7 +59,14 @@ def getAllPrices():
 
 @app.route('/getNodePrice/<provider>/<net>')
 def getNodePrice(provider, net):
-    return {'price': nodePriceDict[provider][net]}
+    allProviders = set(nodePriceDict.keys())
+    allNets = set()
+    for ap in allProviders:
+        for n in set(nodePriceDict[ap].keys()):
+            allNets.add(n)
+    if provider in allProviders and net in allNets:
+        return {'price': nodePriceDict[provider][net]}
+    return {}
 
 # API to validate the location of a ship and make sure that it is not involved in fishing in illegal waters
 @app.route('/location/<mmsi>/<lat>/<lon>')
