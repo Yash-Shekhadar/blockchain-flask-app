@@ -21,3 +21,6 @@ The APIs have been hosted over Google Cloud's App Engine.
   - API 3: http://127.0.0.1:8080/location/1/13.5/14.67
   
 (Note: These URLs are to test the functioning of the API on localhost. The APIs are also hosted over the internet. Refer to the links in previous section for the same)
+
+### Github repository link for smart contract: 
+https://github.com/mahajanhrishikesh/CIS6930-Fishing-Smart-Contract
