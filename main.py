@@ -1,6 +1,7 @@
 from flask import Flask
 import pandas as pd
 import random
+import requests
 # from datetime import datetime
 import math
 
@@ -12,6 +13,7 @@ df_e = pd.read_csv('./mock_data/encounter_final.csv')
 df_s = pd.read_csv('./mock_data/ship.csv')
 df_p = pd.read_csv('./mock_data/port.csv')
 
+nodePriceDict = {"tiingo":{"main": random.uniform(0.1, 3.0),"bnb": random.uniform(0.1, 1.0)}, "dxfeed":{"main":random.uniform(0.1, 3.0),"bnb":random.uniform(0.1, 1.0)},"nftbank":{"main":random.uniform(0.1, 3.0),"bnb":random.uniform(0.1, 1.0)}}
 
 # API to check the existence of a ship 
 @app.route('/data/<mmsi>')
@@ -36,6 +38,27 @@ def encounterCheck(mmsi, start, end):
         else:
             return {'iuuInvolved': False}
         
+
+@app.route('/getPrices/')
+def getAllPrices():
+    nodeNames = ["tiingo", "dxfeed", "nftbank"]
+    netNames = ["main", "bnb"]
+
+    result = {}
+    for node in nodeNames:
+        temp = dict()
+        for net in netNames:
+            res = requests.get(f'http://127.0.0.1:8080/getNodePrice/{node}/{net}')
+            data = res.json()
+            temp[net] = data['price']
+        result[node] = temp
+    
+    return result
+
+
+@app.route('/getNodePrice/<provider>/<net>')
+def getNodePrice(provider, net):
+    return {'price': nodePriceDict[provider][net]}
 
 # API to validate the location of a ship and make sure that it is not involved in fishing in illegal waters
 @app.route('/location/<mmsi>/<lat>/<lon>')
